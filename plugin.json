@@ -1,13 +1,13 @@
 {
-    "id": "com.mattermost.plugin-starter-template",
-    "name": "Plugin Starter Template",
-    "description": "This plugin serves as a starting point for writing a Mattermost plugin.",
-    "homepage_url": "https://github.com/mattermost/mattermost-plugin-starter-template",
-    "support_url": "https://github.com/mattermost/mattermost-plugin-starter-template/issues",
-    "release_notes_url": "https://github.com/mattermost/mattermost-plugin-starter-template/releases/tag/v0.1.0",
+    "id": "org.helit.more-threads",
+    "name": "More Threads",
+    "description": "Some supporting features for collapsible threads",
+    "homepage_url": "https://github.com/kongr45gpen/more-threads",
+    "support_url": "https://github.com/kongr45gpen/more-threads/issues",
+    "release_notes_url": "https://github.com/kongr45gpen/more-threads/releases",
     "icon_path": "assets/starter-template-icon.svg",
     "version": "0.1.0",
-    "min_server_version": "5.12.0",
+    "min_server_version": "5.36.0",
     "server": {
         "executables": {
             "linux-amd64": "server/dist/plugin-linux-amd64",

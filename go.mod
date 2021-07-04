@@ -1,4 +1,4 @@
-module github.com/mattermost/mattermost-plugin-starter-template
+module github.com/kongr45gpen/more-threads
 
 go 1.16
 

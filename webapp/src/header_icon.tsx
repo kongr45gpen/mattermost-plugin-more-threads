@@ -31,20 +31,28 @@ const HeaderIcon:FC = () => {
 
     if (isAutoFollowing) {
         return (
-            <div>
-                <HeaderIconContainer
-                    active={true}
-                    className={'fa fa-heart'}
-                />
-                Autofollowing
-            </div>
+            <button
+                className={'Button Button___transparent is-active separated FollowButton'}
+            >
+                <span
+                    className='Button_label'
+                >
+                    {'Auto-following'}
+                </span>
+            </button>
         );
     }
 
     return (
-        <HeaderIconContainer
-            className={'fa fa-heart-o'}
-        />
+        <button
+            className={'Button Button___transparent separated FollowButton'}
+        >
+            <span
+                className='Button_label'
+            >
+                {'Auto-follow'}
+            </span>
+        </button>
     );
 };
 

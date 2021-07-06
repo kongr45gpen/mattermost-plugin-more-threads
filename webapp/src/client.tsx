@@ -6,18 +6,16 @@ import manifest from 'manifest';
 const apiUrl = `/plugins/${manifest.id}/api/v0`;
 
 export const setChannelAutoFollow = async (channelId: string, autoFollow: boolean) => {
-    console.log("Set autofollow for channel " + channelId + " to " + autoFollow);
-
     const method = autoFollow ? 'put' : 'delete';
 
-    // await doFetchWithResponse(apiUrl + '/autofollow/' + channelId, {method: method});
-}
+    await doFetchWithResponse(apiUrl + '/autofollow/' + channelId, {method});
+};
 
 export const getChannelAutoFollow = async (channelId: string) => {
-    // const {data} = await doFetchWithResponse(apiUrl + '/autofollow/' + channelId, {method: 'get'});
+    const {data} = await doFetchWithResponse(apiUrl + '/autofollow/' + channelId, {method: 'get'});
 
     return true;
-}
+};
 
 export const doFetchWithResponse = async (url: string, options = {}) => {
     const response = await fetch(url, Client4.getOptions(options));

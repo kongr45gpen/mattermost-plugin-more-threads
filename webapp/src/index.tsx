@@ -2,10 +2,11 @@ import {Store, Action} from 'redux';
 
 import {GlobalState} from 'mattermost-redux/types/store';
 
+import HeaderIcon from 'header_icon';
+import {setChannelAutoFollow} from 'client';
+
 // eslint-disable-next-line import/no-unresolved
 import {PluginRegistry} from './types/mattermost-webapp';
-
-import HeaderIcon from 'header_icon';
 
 import manifest from './manifest';
 
@@ -14,8 +15,9 @@ export default class Plugin {
     public async initialize(registry: PluginRegistry, store: Store<GlobalState, Action<Record<string, unknown>>>) {
         // @see https://developers.mattermost.com/extend/plugins/webapp/reference/
 
+		// eslint-disable-next-line TS2686 TS7006
         registry.registerChannelHeaderButtonAction(<HeaderIcon/>, (channel) => {
-            console.log("You have pressed the button", channel);
+            setChannelAutoFollow(channel.id, true);
         }, 'Auto-follow threads', 'Auto-follow threads');
     }
 }

@@ -34,10 +34,8 @@ func (p *Plugin) ServeHTTP(c *plugin.Context, w http.ResponseWriter, r *http.Req
 }
 
 func (p *Plugin) MessageHasBeenPosted(c *plugin.Context, post *model.Post) {
-	if post.RootId == "" {
-		p.API.LogError("New message has been posted")
-
-		// New thread created
+	if post.RootId != "" {
+		// Message posted in existing thread
 
 		channel, _ := p.API.GetChannel(post.ChannelId)
 		teamId := channel.TeamId
@@ -50,6 +48,11 @@ func (p *Plugin) MessageHasBeenPosted(c *plugin.Context, post *model.Post) {
 			}
 
 			for _, member := range *members {
+				if member.UserId == post.UserId {
+					// The thread participant should already be following this thread
+					continue
+				}
+
 				followBytes, _ := p.API.KVGet(GetKVkey(member.UserId, member.ChannelId))
 
 				autoFollowing := false
@@ -58,11 +61,7 @@ func (p *Plugin) MessageHasBeenPosted(c *plugin.Context, post *model.Post) {
 				}
 
 				if autoFollowing {
-					p.API.LogInfo("User " + member.UserId + " is autofollowing")
-
-					p.API.FollowThread(member.UserId, teamId, post.Id)
-				} else {
-					p.API.LogInfo("User " + member.UserId + " is not autofollowing")
+					p.API.FollowThread(member.UserId, teamId, post.RootId)
 				}
 			}
 
